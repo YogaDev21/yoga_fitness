@@ -25,7 +25,7 @@ import { useUserContext } from "@/context/AuthContext";
 
 const SignUpForm = () => {
   const { toast } = useToast();
-  const { checkAuthUser, isPending: isUserLoading } = useUserContext();
+  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
   const navigate = useNavigate();
   const { mutateAsync: createUserAccount, isPending: isCratingAccount } =
     useCreateUserAccount();
@@ -33,7 +33,6 @@ const SignUpForm = () => {
   const { mutateAsync: signInAccount, isPending: isSignIn } =
     useSignInAccount();
 
-  // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
     defaultValues: {
@@ -44,11 +43,7 @@ const SignUpForm = () => {
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-
     const newUser = await createUserAccount(values);
     if (!newUser) {
       return toast({
