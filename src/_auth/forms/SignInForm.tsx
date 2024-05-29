@@ -43,7 +43,7 @@ const SignInForm = () => {
     if (!session) {
       return toast({
         variant: "destructive",
-        title: "halo.",
+        title: "Sign in failed, Please try again.",
       });
     }
     const isLoggedIn = await checkAuthUser();

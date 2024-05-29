@@ -1,6 +1,10 @@
+import { useSignOutAccount } from "@/lib/react-query/queriesAndMutations";
 import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
+
 const AuthLayout = () => {
+  const { mutate: signOut, isSuccess } = useSignOutAccount();
+
   const isAuthenticated = false;
   return (
     <>
@@ -11,6 +15,9 @@ const AuthLayout = () => {
           <section className="flex flex-1 justify-center items-center flex-col py-10">
             <Outlet />
           </section>
+          <div>
+            <button onClick={() => signOut()}>logout dev</button>
+          </div>
           <img
             src="/assets/images/side-img.svg"
             alt="logo"
