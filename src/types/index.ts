@@ -13,6 +13,12 @@ export type INavLink = {
   label: string;
 };
 
+export type IBottombarLink = {
+  imgURL: string;
+  route: string;
+  label: string;
+};
+
 export type IUpdateUser = {
   userId: string;
   name: string;
